@@ -38,15 +38,15 @@ func (u User) isFieldLengthValid(field *string, minLength int, maxLength int) bo
 }
 
 func (u User) IsValidUser() error {
-	if !u.isPhoneValid() {
-		return errors.New("phone invalid")
-	}
+	// if !u.isPhoneValid() {
+	// 	return errors.New("phone invalid")
+	// }
 	if !u.isEmailValid() {
 		return errors.New("email invalid")
 	}
-	if !u.areRequiredFieldsPresent() {
-		return errors.New("required fields are missing")
-	}
+	// if !u.areRequiredFieldsPresent() {
+	// 	return errors.New("required fields are missing")
+	// }
 	if !u.isFieldLengthValid(u.Username, 3, 20) {
 		return errors.New("username length invalid")
 	}

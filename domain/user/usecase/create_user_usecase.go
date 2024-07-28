@@ -23,7 +23,7 @@ func NewCreateUserUsecase(db *gorm.DB) CreateUserUsecase {
 }
 
 func (c CreateUserUsecaseImpl) ExecuteCreateUser(ctx context.Context, user entity.User) error {
-	if err := user.isEmailValid(); err != nil {
+	if err := user.IsValidUser(); err != nil {
 		return err
 	}
 	return c.userRepo.Save(ctx, user)

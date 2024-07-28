@@ -10,6 +10,7 @@ import (
 type UserRepo interface {
 	Save(ctx context.Context, user entity.User) error
 	Update(ctx context.Context, id string, user entity.User) error
+	Find(ctx context.Context, email string, user entity.User) error
 }
 
 type userRepoImpl struct {
