@@ -5,13 +5,13 @@ type CreateUserReq struct {
 	First_name string `json:"first_name"`
 	Last_name  string `json:"last_name"`
 	Username   string `json:"username"`
-	Email      string `json:"email"`
+	Phone      string `json:"phone"`
 	Password   string `json:"password"`
 	Role       string `json:"role" validate:"required,eq=Administrator|eq=Driver|eq=Provider"`
 }
 
 type LoginUserReq struct {
-	Email    string `json:"email"`
+	Phone    string `json:"phone"`
 	Password string `json:"password"`
 }
 

@@ -9,10 +9,6 @@ import (
 
 var GORM *gorm.DB
 
-type User struct {
-	Name string
-}
-
 func NewDB(conn Connection) (*gorm.DB, error) {
 	fmt.Println("start connect to database...")
 	if err := conn.HasError(); err != nil {

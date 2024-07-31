@@ -38,7 +38,7 @@ func (u UserHandler) HandleCreateUser() fiber.Handler {
 			ID:         createUserReq.ID,
 			First_name: &createUserReq.First_name,
 			Last_name:  &createUserReq.Last_name,
-			Email:      &createUserReq.Email,
+			Phone:      &createUserReq.Phone,
 			Password:   &hashedPassword,
 			Role:       &createUserReq.Role,
 		}
@@ -68,7 +68,7 @@ func (u UserHandler) HandleLogin() fiber.Handler {
 
 		// Fetch user entity from database by email
 		var userEntity entity.User
-		err := u.LoginUserUsecase.ExecuteLoginUser(c.Context(), loginUserReq.Email, userEntity)
+		err := u.LoginUserUsecase.ExecuteLoginUser(c.Context(), loginUserReq.Phone, userEntity)
 		if err != nil {
 			return c.Status(fiber.StatusInternalServerError).JSON(&fiber.Map{
 				"error": "Invalid credentials",
@@ -84,7 +84,7 @@ func (u UserHandler) HandleLogin() fiber.Handler {
 		}
 
 		// Generate JWT tokens
-		accessToken, refreshToken, err := jwtauth.GenerateAllToken(userEntity.ID, *userEntity.Email)
+		accessToken, refreshToken, err := jwtauth.GenerateAllToken(userEntity.ID, *userEntity.Phone)
 		if err != nil {
 			return c.Status(fiber.StatusInternalServerError).JSON(&fiber.Map{
 				"error": err.Error(),
