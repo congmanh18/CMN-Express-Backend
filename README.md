@@ -3,8 +3,7 @@
 ## Installation
 **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/deliveryapp-backend.git
-   cd deliveryapp-backend
+   git clone https://github.com/congmanh18/CMN-Express-Backend.git .
    ```
 **Set up environment variables**
    Create a `.env` file in the root directory and add the necessary environment variables. Refer to the `.env.example` for guidance.
@@ -34,30 +33,45 @@
 The API documentation is available at `http://localhost:8080/swagger/index.html` after starting the server.
 
 ### Example API Calls
-#### Create an Order
+#### Register
 ```http
-POST /api/orders
+POST /user/register
+```
+```
 Content-Type: application/json
 {
-    "userId": "12345",
-    "items": [
-        {
-            "name": "Pizza",
-            "quantity": 1
-        },
-        {
-            "name": "Soda",
-            "quantity": 2
-        }
-    ],
-    "deliveryAddress": "123 Main St, City, Country"
+    "first_name":"Nguyen",
+    "last_name":"Manh",
+    "phone":"0977683533",
+    "username":"nguyenmanh",
+    "password":"12345678",
+    "role":"Administrator"
 }
 ```
-
-#### Get Order Details
+| Parameter    | Type     | Description                   |
+| :----------  | :------- | :-----------------------------|
+| `first_name` | `string` |                               |
+| `last_name`  | `string` |                               |
+| `phone`      | `string` |**Required**. Your phone number|
+| `username`   | `string` |                               |
+| `password`   | `string` |**Required**. Your password    |
+| `role`       | `string` |                               |
+#### Login
 ```http
-GET /api/orders/{orderId}
+POST /user/register
 ```
+```
+Content-Type: application/json
+{
+    "phone":"0977683533",
+    "password":"12345678",
+}
+```
+| Parameter    | Type     | Description                   |
+| :----------  | :------- | :-----------------------------|
+| `phone`      | `string` |**Required**. Your phone number|
+| `password`   | `string` |**Required**. Your password    |
+#### Update info user
 
 ## Configuration
 All configuration options can be set using environment variables. Below are some of the key variables:
@@ -67,9 +81,6 @@ All configuration options can be set using environment variables. Below are some
 - `DB_PASSWORD`: Database password
 - `DB_NAME`: Database name
 
-## Contributing
-We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) for more details.
-
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
@@ -77,4 +88,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 If you have any questions or need further assistance, feel free to contact us at [nguyenmanh180102@gmail.com](mailto:nguyenmanh180102@gmail.com).
 ```
 
-Bạn có thể tùy chỉnh thêm nội dung và cấu trúc để phù hợp với yêu cầu và tính năng cụ thể của project của bạn.
