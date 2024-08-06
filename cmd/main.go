@@ -6,6 +6,7 @@ import (
 	"cmn-express/domain/user/usecase"
 	db "cmn-express/pkgs/database"
 	"log/slog"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"gorm.io/gorm"
@@ -32,23 +33,23 @@ func main() {
 
 func connectDB() *gorm.DB {
 	var conn = db.Connection{
-		Host:     "localhost",
-		User:     "postgres",
-		Password: "231002",
-		DBName:   "postgres",
-		Port:     "5432",
+		Host:     os.Getenv("DB_HOST"),
+		User:     os.Getenv("DB_USER"),
+		Password: os.Getenv("DB_PASSWORD"),
+		DBName:   os.Getenv("DB_NAME"),
+		Port:     os.Getenv("DB_PORT"),
 	}
 
 	var gormDB, err = db.NewDB(conn)
 	if err != nil {
+		slog.Error("failed to connect to database", "error", err)
 		panic(err)
 	}
 
 	if enableMigration {
-		//gormDB.Exec("CREATE DATABASE gorm_db")
-		// err := gormDB.Debug().AutoMigrate(&entity.User{})
 		err := gormDB.AutoMigrate(&entity.User{})
 		if err != nil {
+			slog.Error("failed to migrate database", "error", err)
 			return nil
 		}
 	}

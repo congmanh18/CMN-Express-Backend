@@ -1,30 +1,23 @@
-##### Stage 1 #####
-FROM golang:1.22-alpine as builder
+FROM golang:1.22-alpine AS builder
 
-
-RUN mkdir -p /project
 WORKDIR /project
 
-### Copy Go application dependency files
-COPY go.mod .
-COPY go.sum .
-
-### Download Go application module dependencies
+COPY go.mod ./
+COPY go.sum ./
 RUN go mod download
 
-
-### Copy actual source code for building the application
 COPY . .
-
-ENV CGO_ENABLED=0
 
 RUN go build -o app cmd/main.go
 
+FROM alpine:3.18
 
-##### Stage 2 #####
-FROM scratch
-
-WORKDIR /dist 
+WORKDIR /dist
 
 COPY --from=builder /project/app .
-CMD ["./app"]
+COPY wait-for-it.sh .
+
+RUN chmod +x wait-for-it.sh \
+    && apk add --no-cache postgresql-client
+
+CMD ["./wait-for-it.sh", "db", "./app"]
