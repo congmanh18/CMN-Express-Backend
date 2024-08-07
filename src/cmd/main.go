@@ -1,10 +1,11 @@
 package main
 
 import (
-	user_api "cmn-express/apis/user"
-	entity "cmn-express/domain/user/entity"
-	"cmn-express/domain/user/usecase"
-	db "cmn-express/pkgs/database"
+	userapis "cmn-express/src/apis/user"
+	entity "cmn-express/src/domain/user/entity"
+	usecase "cmn-express/src/domain/user/usecase"
+	db "cmn-express/src/pkgs/database"
+
 	"log/slog"
 	"os"
 
@@ -23,10 +24,10 @@ func main() {
 	var db = connectDB()
 
 	// 3. init route
-	var userHander = user_api.UserHandler{
+	var userHander = userapis.UserHandler{
 		CreateUserUsecase: usecase.NewCreateUserUsecase(db),
 	}
-	user_api.SetupUserRoutes(app, userHander)
+	userapis.SetupUserRoutes(app, userHander)
 
 	app.Listen(":3000")
 }

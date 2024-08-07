@@ -1,8 +1,9 @@
-package usecase
+package user
 
 import (
-	entity "cmn-express/domain/user/entity"
-	repo "cmn-express/domain/user/repository"
+	entity "cmn-express/src/domain/user/entity"
+	repo "cmn-express/src/domain/user/repository"
+
 	"context"
 
 	"gorm.io/gorm"
