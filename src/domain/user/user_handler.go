@@ -1,8 +1,8 @@
 package user
 
 import (
-	entity "cmn-express/src/internal/domain/user/entity"
-	usecase "cmn-express/src/internal/domain/user/usecase"
+	"cmn-express/src/domain/user/entity"
+	"cmn-express/src/domain/user/usecase"
 	"cmn-express/src/pkgs/utils"
 
 	"github.com/gofiber/fiber/v2"

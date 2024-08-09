@@ -2,7 +2,7 @@ package usecase
 
 import (
 	"cmn-express/common"
-	model "cmn-express/src/apis/token/model"
+	model "cmn-express/src/internal/domain/token/model"
 	"context"
 
 	"github.com/golang-jwt/jwt/v4"
@@ -47,5 +47,5 @@ func (r refreshTokenUseCaseImpl) ExecRefreshToken(ctx context.Context, refreshTo
 		}
 	}
 
-	return token, nil
+	return *token, nil
 }

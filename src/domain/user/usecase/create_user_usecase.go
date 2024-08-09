@@ -1,8 +1,8 @@
 package usecase
 
 import (
-	entity "cmn-express/src/internal/domain/user/entity"
-	repo "cmn-express/src/internal/domain/user/repository"
+	"cmn-express/src/domain/user/entity"
+	repo "cmn-express/src/domain/user/repository"
 
 	"context"
 
