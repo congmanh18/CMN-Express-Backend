@@ -1,7 +1,7 @@
-package user
+package repository
 
 import (
-	entity "cmn-express/src/domain/user/entity"
+	entity "cmn-express/src/internal/domain/user/entity"
 	"context"
 )
 

@@ -1,11 +1,12 @@
-package userapis
+package user
 
 import (
-	entity "cmn-express/src/domain/user/entity"
-	usecase "cmn-express/src/domain/user/usecase"
+	entity "cmn-express/src/internal/domain/user/entity"
+	usecase "cmn-express/src/internal/domain/user/usecase"
 	"cmn-express/src/pkgs/utils"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 )
 
 type UserHandler struct {
@@ -32,9 +33,12 @@ func (u UserHandler) HandleCreateUser() fiber.Handler {
 			})
 		}
 
+		// Generate a new UUID
+		userID := uuid.New().String()
+
 		// init user entity
 		var userEntity = entity.User{
-			ID:         createUserReq.ID,
+			ID:         userID,
 			First_name: &createUserReq.First_name,
 			Last_name:  &createUserReq.Last_name,
 			Phone:      &createUserReq.Phone,

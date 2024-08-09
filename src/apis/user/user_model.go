@@ -1,7 +1,7 @@
 package userapis
 
 type CreateUserReq struct {
-	ID         string `json:"id"`
+	ID         string
 	First_name string `json:"first_name"`
 	Last_name  string `json:"last_name"`
 	Username   string `json:"username"`

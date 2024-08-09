@@ -6,20 +6,16 @@
    git clone https://github.com/congmanh18/CMN-Express-Backend.git .
    ```
 **Set up environment variables**
-   Create a `.env` file in the root directory and add the necessary environment variables. Refer to the `.env.example` for guidance.
+   Create a `.env` file in the root directory and add the necessary environment variables. Refer to the `.env` for guidance.
 
 **Install dependencies**
    ```bash
    go mod tidy
    ```
 
-**Run database migrations**
-   ```bash
-   go run migrate.go
-   ```
 **Start the server**
    ```bash
-   go run main.go
+   go run src/cmd/main.go
    ```
 
 ## Usage
@@ -42,7 +38,7 @@ Content-Type: application/json
 {
     "first_name":"Nguyen",
     "last_name":"Manh",
-    "phone":"0977683533",
+    "phone":"0977478255",
     "username":"nguyenmanh",
     "password":"12345678",
     "role":"Administrator"

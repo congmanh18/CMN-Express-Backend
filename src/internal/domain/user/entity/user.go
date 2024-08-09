@@ -1,4 +1,4 @@
-package user
+package entity
 
 import (
 	"errors"
@@ -23,15 +23,6 @@ func (u User) isPhoneValid() bool {
 	return len(*u.Phone) == 10
 }
 
-// func (u User) isEmailValid() bool {
-// 	if u.Email == nil {
-// 		return false
-// 	}
-// 	emailRegex := `^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$`
-// 	re := regexp.MustCompile(emailRegex)
-// 	return re.MatchString(*u.Email)
-// }
-
 func (u User) isFieldLengthValid(field *string, minLength int, maxLength int) bool {
 	if field == nil {
 		return false
@@ -44,15 +35,6 @@ func (u User) IsValidUser() error {
 	if !u.isPhoneValid() {
 		return errors.New("phone invalid")
 	}
-	// if !u.isEmailValid() {
-	// 	return errors.New("email invalid")
-	// }
-	// if !u.areRequiredFieldsPresent() {
-	// 	return errors.New("required fields are missing")
-	// }
-	// if !u.isFieldLengthValid(u.Username, 3, 20) {
-	// 	return errors.New("username length invalid")
-	// }
 	if !u.isFieldLengthValid(u.Password, 8, 64) {
 		return errors.New("password length invalid")
 	}

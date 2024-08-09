@@ -2,14 +2,16 @@ package main
 
 import (
 	userapis "cmn-express/src/apis/user"
-	entity "cmn-express/src/domain/user/entity"
-	usecase "cmn-express/src/domain/user/usecase"
+	usecase "cmn-express/src/internal/domain/user/usecase"
+	entity "cmn-express/src/internal/domain/user/entity"
 	db "cmn-express/src/pkgs/database"
+	"log"
 
 	"log/slog"
 	"os"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/joho/godotenv"
 	"gorm.io/gorm"
 )
 
@@ -33,6 +35,12 @@ func main() {
 }
 
 func connectDB() *gorm.DB {
+	// Load các biến môi trường từ file .env
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+
 	var conn = db.Connection{
 		Host:     os.Getenv("DB_HOST"),
 		User:     os.Getenv("DB_USER"),
@@ -41,7 +49,8 @@ func connectDB() *gorm.DB {
 		Port:     os.Getenv("DB_PORT"),
 	}
 
-	var gormDB, err = db.NewDB(conn)
+	var gormDB *gorm.DB
+	gormDB, err = db.NewDB(conn)
 	if err != nil {
 		slog.Error("failed to connect to database", "error", err)
 		panic(err)

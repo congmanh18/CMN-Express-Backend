@@ -1,7 +1,7 @@
 package utils
 
 import (
-	user "cmn-express/src/domain/user/entity"
+	user "cmn-express/src/internal/domain/user/entity"
 	"errors"
 
 	"golang.org/x/crypto/bcrypt"
