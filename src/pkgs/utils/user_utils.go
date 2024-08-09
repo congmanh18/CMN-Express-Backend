@@ -1,7 +1,7 @@
 package utils
 
 import (
-	user "cmn-express/src/internal/domain/user/entity"
+	"cmn-express/src/domain/user/entity"
 	"errors"
 
 	"golang.org/x/crypto/bcrypt"
@@ -31,7 +31,7 @@ func VerifyPassword(hashedPassword, password string) error {
 }
 
 // CheckUserType determines the type of a user based on their role.
-func CheckUserType(u user.User) UserType {
+func CheckUserType(u entity.User) UserType {
 	switch *u.Role {
 	case "administrator":
 		return Administrator
@@ -45,7 +45,7 @@ func CheckUserType(u user.User) UserType {
 }
 
 // MatchUserToID checks if the given user ID matches the ID of the provided user.
-func MatchUserToID(u user.User, id string) (bool, error) {
+func MatchUserToID(u entity.User, id string) (bool, error) {
 	if u.ID == id {
 		return true, nil
 	}

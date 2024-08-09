@@ -1,4 +1,4 @@
-package userapis
+package user
 
 type CreateUserReq struct {
 	ID         string
